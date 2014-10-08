@@ -8,7 +8,7 @@ get '/bus' do
   roundtrip = params[:roundtrip]
   departure_date = params[:departure_date]
   return_date = params[:return_date]
-  @gotobus = gotobus
+  @results = gotobus + megabus
   erb :bus
 end
 
