@@ -1,0 +1,34 @@
+<form action="/bus">
+  <label for="origin">Origin</label>
+  <input type="text" name="origin">
+  <br>
+  <label for="destination">Destination</label>
+  <input type="text" name="destination">
+  <br>
+  <label for="departure_date">Departure Date</label>
+  <input type="date" name="departure_date">
+  <br>
+  <label for="roundtrip">Roundtrip?</label>
+  <input type="checkbox" name="roundtrip">
+  <br>
+  <div id="return_date">
+    <label for="return_date">Return Date</label>
+    <input type="date" name="return_date">
+  </div>
+  <br>
+
+  <input type="submit">
+</form>
+
+<script>
+  $(document).ready(function(){
+    var roundtrip = $('input[name=roundtrip]');
+    var return_date = $('#return_date');
+    return_date.hide();
+    roundtrip.on('change', function(){
+      var checked = roundtrip.is(':checked');
+      if ( checked ){ return_date.show(); }
+      else { return_date.hide(); }
+    });
+  });
+</script>
