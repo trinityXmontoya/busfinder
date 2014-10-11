@@ -2,20 +2,13 @@ get '/' do
   erb :index
 end
 
-get '/bus' do
+get '/result' do
   origin = params[:origin]
   destination = params[:destination]
   roundtrip = params[:roundtrip]
-  departure_date = params[:departure_date]
+  departure_date = params[:depart_date]
   return_date = params[:return_date]
   @results = gotobus + megabus
-  erb :bus
-end
-
-get '/about' do
-  erb :about
-end
-
-get '/results' do
-  erb :results
+  @luckystar = luckystar
+  erb :result
 end

@@ -6,6 +6,6 @@ require "nokogiri"
 require "mechanize"
 require './search'
 require './routes'
-
+also_reload './search'
 set :server, 'webrick'
 set :port, 9494
