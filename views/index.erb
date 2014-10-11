@@ -1,15 +1,16 @@
-<form action="/result">
+<div id="search-form">
+  <form action="/result">
+    <label for="roundtrip">Roundtrip?</label>
+    <input type="checkbox" name="roundtrip">
+    <input type="text" name="origin" placeholder="Origin">
+    <input type="text" name="destination" placeholder="Destination">
+    <input placeholder="Depart Date" name="depart_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
+    <input placeholder="Return Date" name="return_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
+    <button type="submit">Search
+  </form>
+</div>
 
-  <label for="roundtrip">Roundtrip?</label>
-  <input type="checkbox" name="roundtrip">
-  <input type="text" name="origin" placeholder="Origin">
-  <input type="text" name="destination" placeholder="Destination">
-  <input placeholder="Depart Date" name="depart_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
-  <input placeholder="Return Date" name="return_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
-  <br>
-
-  <input type="submit">
-</form>
+<span class="icon-search">
 
 <script>
   $(document).ready(function(){

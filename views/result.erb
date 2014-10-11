@@ -1,5 +1,17 @@
-<br>
-<br>
+
+<%= @origin %>
+<% if @roundtrip %>
+< - >
+<% else %>
+- >
+<% end %>
+<%= @destination %>
+<% if @roundtrip %>
+from <%= @departure_date %> to <%= @return_date%>
+<% else %>
+ on <%= @departure_date %>
+<% end %>
+
 <table>
   <thead>
     <tr>

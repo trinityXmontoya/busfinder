@@ -1,5 +1,8 @@
 def gotobus
-  url = "http://search.gotobus.com/search/bus.do?option=Select&is_roundtrip=0&submit_flag=submit_flag&roundtrip=0&bus_from=Boston%2C+MA&bus_to=New+York%2C+NY&filter_date=2014-10-18&return_date=&adult_num=1"
+  depart_date = "2014-09-29"
+  departure = "Boston,MA"
+  origin = "New York, NY"
+  url = "http://search.gotobus.com/search/bus.do?option=Select&is_roundtrip=0&submit_flag=submit_flag&roundtrip=0&bus_from=#{departure}&bus_to=#{origin}&filter_date=#{depart_date}&return_date=&adult_num=1"
   details = []
   table = Nokogiri::HTML(open(url)).css("#listarea .b_s_result table")
   table.each do |t|
@@ -14,6 +17,7 @@ def gotobus
   end
   return details
 end
+
 
 def megabus
   url = "http://us.megabus.com/JourneyResults.aspx?originCode=123&destinationCode=94&outboundDepartureDate=10%2f18%2f2014&inboundDepartureDate=&passengerCount=1&transportType=0&concessionCount=0&nusCount=0&outboundWheelchairSeated=0&outboundOtherDisabilityCount=0&inboundWheelchairSeated=0&inboundOtherDisabilityCount=0&outboundPcaCount=0&inboundPcaCount=0&promotionCode=&withReturn=0"
