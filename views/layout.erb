@@ -4,12 +4,18 @@
   <meta charset="UTF-8">
   <title>Bus Finder</title>
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <nav>
-    <a href="/">Search</a>
-    <a href="/about">About</a>
-  </nav>
-  <%= yield %>
+    <div id="logo-wrapper">
+      <div id="logo">
+        <img src="/bus.svg" alt="">
+        <h1>BusFinder</h1>
+        <h4 class="byline">The best prices, fast.</h4>
+      </div>
+    </div>
+    <%= yield %>
 </body>
 </html>
+
+</style>

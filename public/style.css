@@ -1,0 +1,25 @@
+body {
+  /*background-image: url('http://subtlepatterns.com/patterns/restaurant.png');*/
+/*  background-size: cover;
+  background-repeat: no-repeat;*/
+  font-family: Helvetica;
+}
+
+#logo-wrapper {
+  text-align: center;
+  margin: 70px 0;
+}
+
+#logo img {
+  width: 100px;
+}
+#logo h1 {
+  font-size: 40px;
+  margin-top: 0;
+}
+
+#logo h4 {
+  margin: -34px 0 0 0;
+}
+
+/*bus color #F39C12 */

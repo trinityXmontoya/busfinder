@@ -1,20 +1,11 @@
-<form action="/bus">
-  <label for="origin">Origin</label>
-  <input type="text" name="origin">
-  <br>
-  <label for="destination">Destination</label>
-  <input type="text" name="destination">
-  <br>
-  <label for="departure_date">Departure Date</label>
-  <input type="date" name="departure_date">
-  <br>
+<form action="/result">
+
   <label for="roundtrip">Roundtrip?</label>
   <input type="checkbox" name="roundtrip">
-  <br>
-  <div id="return_date">
-    <label for="return_date">Return Date</label>
-    <input type="date" name="return_date">
-  </div>
+  <input type="text" name="origin" placeholder="Origin">
+  <input type="text" name="destination" placeholder="Destination">
+  <input placeholder="Depart Date" name="depart_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
+  <input placeholder="Return Date" name="return_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
   <br>
 
   <input type="submit">
@@ -23,7 +14,7 @@
 <script>
   $(document).ready(function(){
     var roundtrip = $('input[name=roundtrip]');
-    var return_date = $('#return_date');
+    var return_date = $('input[name=return_date]');
     return_date.hide();
     roundtrip.on('change', function(){
       var checked = roundtrip.is(':checked');
