@@ -1,5 +1,6 @@
 class LuckyStar
 
+  BASE = "http://www.luckystarbus.com/Purchase.aspx"
   CODES = { "New York, NY" => 1, "Boston, MA" => 2 }
 
   def self.schedule(origin,destination,date)
@@ -11,7 +12,7 @@ class LuckyStar
       depart = d.text.scan(/\d{1,2}:\d{2} \w{2}/).first
       price = d.text.scan(/\$\d{2}.\d{2}/).first
       schedule << {
-        company: "luckystar",
+        company: "<a href=#{BASE}>Lucky Star</a>",
         departure_time: depart,
         arrival_time: "#{add_4hours_30mins(depart)}*" ,
         price: price == nil ? "Unavailable*" : price
@@ -22,7 +23,7 @@ class LuckyStar
 
   def self.search(origin,destination,date)
     agent = Mechanize.new
-    res = agent.post("http://www.luckystarbus.com/Purchase.aspx", {
+    res = agent.post(BASE, {
       'ctl00$MainContent$rbTripType'=> 'One',
       'ctl00$MainContent$numPassengers'=> '1',
       'ctl00$MainContent$ddDepartureCity'=> "#{origin}",

@@ -11,10 +11,30 @@ html, body {
 height: 100%;
 }
 
-#footer, .push {
-  height: 50px;
+#container {
+  min-height: 100%;
+  margin: 0 auto -40px;
 }
 
+/*money #2CFF7A*/
+/*1391FF*/
+
+#footer, .push {
+  height: 40px;
+}
+
+#footer {
+  border-top: whitesmoke solid 1px;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #1D1A14;
+  text-align: center;
+  padding: 13px 0 0 0;
+}
+
+#footer a {
+  /*color: #6A422A;*/
+}
 
 /*STYLES*/
 #logo-wrapper {
@@ -22,6 +42,10 @@ height: 100%;
   margin: 30px 0 25px 0;
 }
 
+#logo-wrapper a {
+  color: black;
+  text-decoration: none
+}
 #logo img {
   width: 100px;
 }
@@ -36,7 +60,7 @@ height: 100%;
 
 #search-form {
   text-align: center;
-  background-color: whitesmoke;
+  background-color: #0060B2;
   padding: 10px 0;
 }
 
@@ -53,7 +77,7 @@ form {
 }
 
 form input[value='Search'] {
-  background-color: #F39C12;
+  background-color: #FFAE2C;
   border: none;
   color: white;
 }
@@ -95,15 +119,9 @@ form button {
 }
 */
 
-
-#footer {
-  background-color: black;
-  margin-top: 50px;
-  color: #A8A39C;
-  text-align: center;
-  padding: 15px 0 0 0;
-}
-
-#footer a {
-  color: #6A422A;
+/*ABOUT*/
+#about {
+  margin: 50px auto 30px auto;
+  float: none;
+  font-size: 15px;
 }

@@ -6,10 +6,11 @@ class Megabus
 
   def self.schedule(origin,destination,date)
     schedule = []
-    details = search(origin,destination,date)
+    url = query(origin,destination,date)
+    details = search(url)
     details.each do |d|
       schedule << {
-        company: "megabus",
+        company: "<a href=#{url}>Megabus</a>",
 
         departure_time: d.css('.two p').first.text
                          .gsub!(/\n|\t|\r/,"")
@@ -27,9 +28,12 @@ class Megabus
     return schedule
   end
 
-  def self.search(origin,destination,date)
-    q = BASE + "&originCode=#{CODES[origin]}&destinationCode=#{CODES[destination]}&outboundDepartureDate=#{convert_date(date)}"
-    return Nokogiri::HTML(open(q)).css(".journey")
+  def self.query(origin,destination,date)
+    BASE + "&originCode=#{CODES[origin]}&destinationCode=#{CODES[destination]}&outboundDepartureDate=#{convert_date(date)}"
+  end
+
+  def self.search(url)
+    return Nokogiri::HTML(open(url)).css(".journey")
   end
 
   def self.convert_date(date)
