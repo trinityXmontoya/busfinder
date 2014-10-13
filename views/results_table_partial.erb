@@ -11,7 +11,12 @@
       <tr>
         <td><%= x[:departure_time] %></td>
         <td><%= x[:arrival_time] %></td>
-        <td><%= x[:price] %></td>
+        <% price = x[:price] %>
+        <% if price < "$20" %>
+          <td class="budget"><%= price %></td>
+        <% else %>
+          <td><%= price %></td>
+        <% end %>
         <td><%= x[:company] %></td>
       </tr>
       <% end %>
