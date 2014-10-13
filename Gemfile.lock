@@ -10,9 +10,10 @@ GEM
     backports (3.6.1)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
-    coderay (1.1.0)
+    daemons (1.1.9)
     domain_name (0.5.21)
       unf (>= 0.0.5, < 1.0.0)
+    eventmachine (1.0.3)
     ffi (1.9.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -27,7 +28,6 @@ GEM
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
-    method_source (0.8.2)
     mime-types (2.4.1)
     mini_portile (0.6.0)
     minitest (5.4.2)
@@ -37,10 +37,6 @@ GEM
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     ntlm-http (0.1.1)
-    pry (0.10.1)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -76,7 +72,10 @@ GEM
       sinatra (>= 0.9.2)
       thor (>= 0.11.8)
       tilt (>= 0.2)
-    slop (3.6.0)
+    thin (1.6.3)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0)
+      rack (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -96,9 +95,9 @@ PLATFORMS
 DEPENDENCIES
   mechanize
   nokogiri
-  pry
   sinatra
   sinatra-cache
   sinatra-reloader
   sinatra_more
+  thin
   watir-webdriver

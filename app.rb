@@ -15,3 +15,4 @@ set :cache_environment, :development
 set :cache_fragments_output_dir, Proc.new { File.join(root, 'public', 'cache') }
 
 require './routes'
+set :server, 'thin'
