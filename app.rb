@@ -5,8 +5,7 @@ require 'open-uri'
 require "nokogiri"
 require "mechanize"
 require "watir-webdriver"
-require './search'
+Dir["./models/*.rb"].each {|file| require file }
 require './routes'
-also_reload './search'
 set :server, 'webrick'
 set :port, 9494

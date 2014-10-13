@@ -18,6 +18,8 @@ from <%= @departure_date %> to <%= @return_date%>
       <th>Leaving</th>
       <th>Arriving</th>
       <th>Price</th>
+<!--       <th>Pick Up</th>
+      <th>Drop Off</th> -->
       <th>Site</th>
     </tr>
   </thead>
@@ -31,12 +33,9 @@ from <%= @departure_date %> to <%= @return_date%>
     <td><%= x[:departure_time] %></td>
     <td><%= x[:arrival_time] %></td>
     <td><%= x[:price] %></td>
+<!--     <td><#%= x[:pickup] %></td>
+    <td><#%= x[:dropoff] %></td> -->
     <td><%= x[:company] %></td>
     <br>
   </tr>
 <% end %>
-
-PETAAH
-<%= @peterpan %>
-  BOLT
-<%= @boltbus %>

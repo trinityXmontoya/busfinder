@@ -1,26 +1,18 @@
 <div id="search-form">
   <form action="/result">
-    <label for="roundtrip">Roundtrip?</label>
-    <input type="checkbox" name="roundtrip">
-    <input type="text" name="origin" placeholder="Origin">
-    <input type="text" name="destination" placeholder="Destination">
-    <input placeholder="Depart Date" name="depart_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
-    <input placeholder="Return Date" name="return_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
+    <select name="origin">
+      <option value="Boston, MA" selected="selected">Boston, MA</option>
+      <option value="New York, NY">New York, NY</option>
+    </select>
+    <select name="destination">
+      <option value="New York, NY" selected="selected">New York, NY</option>
+      <option value="Boston, MA">Boston, MA</option>
+    </select>
+    <input type="date" placeholder="<%= Time.now %>">
     <button type="submit">Search
   </form>
 </div>
 
-<span class="icon-search">
-
-<script>
-  $(document).ready(function(){
-    var roundtrip = $('input[name=roundtrip]');
-    var return_date = $('input[name=return_date]');
-    return_date.hide();
-    roundtrip.on('change', function(){
-      var checked = roundtrip.is(':checked');
-      if ( checked ){ return_date.show(); }
-      else { return_date.hide(); }
-    });
-  });
-</script>
+<div id="today"></div>
+<div id="tomorrow"></div>
+<div id="the-next-day"></div>
