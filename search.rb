@@ -4,10 +4,10 @@ def gotobus
   origin = CGI.escape("New York, NY")
   url = "http://search.gotobus.com/search/bus.do?option=Select&is_roundtrip=0&submit_flag=submit_flag&roundtrip=0&bus_from=#{departure}&bus_to=#{origin}&filter_date=#{depart_date}&return_date=&adult_num=1"
   details = []
-  table = Nokogiri::HTML(open(url)).css("#listarea .b_s_result table")
-  table.each do |t|
+  schedule = Nokogiri::HTML(open(url)).css("#listarea .b_s_result table")
+  schedule.each do |s|
     # gotobus doesn't have any more unique class or ids
-    td = t.css("tr .n_b_s_se")
+    td = s.css("tr .n_b_s_se")
     details << {
       company: "gotobus",
       departure_time: td[0].content,
@@ -21,21 +21,21 @@ end
 
 def megabus
   url = "http://us.megabus.com/JourneyResults.aspx?originCode=123&destinationCode=94&outboundDepartureDate=10%2f18%2f2014&inboundDepartureDate=&passengerCount=1&transportType=0&concessionCount=0&nusCount=0&outboundWheelchairSeated=0&outboundOtherDisabilityCount=0&inboundWheelchairSeated=0&inboundOtherDisabilityCount=0&outboundPcaCount=0&inboundPcaCount=0&promotionCode=&withReturn=0"
-  res = Nokogiri::HTML(open(url)).css(".journey")
+  schedule = Nokogiri::HTML(open(url)).css(".journey")
   details = []
-  res.each do |r|
+  schedule.each do |s|
     details << {
       company: "megabus",
 
-      departure_time: r.css('.two p').first.text
+      departure_time: s.css('.two p').first.text
                        .gsub!(/\n|\t|\r/,"")
                        .scan(/(?<=Departs)\d{1,2}:\d{2}\S\w{2}/).first,
 
-      arrival_time: r.css('.two p.arrive').first.text
+      arrival_time: s.css('.two p.arrive').first.text
                      .gsub!(/\n|\t|\r/,"")
                      .scan(/(?<=Arrives)\d{1,2}:\d{2}\S\w{2}/).first,
 
-      price: r.css('.five p').text
+      price: s.css('.five p').text
               .scan(/[$]\d+.\d{2}/).first
 
     }
@@ -81,18 +81,18 @@ def luckystar
   form['ctl00$MainContent$btGo.x'] = 0
   form['ctl00$MainContent$btGo.y'] = 0
 
-  table = form.submit.search('#ctl00_MainContent_DepartureGrid tr')
+  schedule = form.submit.search('#ctl00_MainContent_DepartureGrid tr')
   # remove the first tr as it is just the table header "Departure Time| Total | Fare"
-  table.shift
+  schedule.shift
 
   details = []
-  table.each do |t|
-    depart = t.text.scan(/\d{1,2}:\d{2} \w{2}/).first
+  schedule.each do |s|
+    depart = s.text.scan(/\d{1,2}:\d{2} \w{2}/).first
     details << {
       company: "luckystar",
       departure_time: depart,
       arrival_time: "#{add_4hours_30mins(depart)}*" ,
-      price: t.text.scan(/\$\d{2}.\d{2}/).first
+      price: s.text.scan(/\$\d{2}.\d{2}/).first
     }
   end
   return details
@@ -101,66 +101,31 @@ end
 
 
 def peterpan
-#   url = "https://tds.peterpanbus.com/"
-#   agent = Mechanize.new
-#   form = agent.get(url).iframes.first.click.forms.first
+  b = Watir::Browser.new :phantomjs
+  url = "https://tds.peterpanbus.com/"
+  b.goto(url)
+  form = b.iframe(id: 'frame-one')
+  #oneway
+  form.radio(value: "radio13").set
+  #roundtrip
+  # b.radio(value: 'radio16').set
 
-#   #roundtrip
-#   # 0 for one-way, 1 for roundtrip
-#   form.radiobutton_with(name: 'trip:ticketTypeField:ticket-type-border:ticket-type-border_body:ticket-type').check
-
-#   #origin
-#   form.field_with(name: 'trip:origin:fieldFrag:field-border:field-border_body:field-container:field').options.find{|o| o.value == 'BOSTON, MA'}.select
-
-#   #destination
-#   form.field_with(name: 'trip:destination:fieldFrag:field-border:field-border_body:field-container:field').value = "New York, NY"
-
-#   #departure date
-#   form.field_with(name: 'trip:travelDates:dates-border:dates-border_body:departDate:fieldFrag:field-border:field-border_body:field-container:field').value = "2014-10-18"
-
-#   page = agent.submit(form, form.button)
-
-
-
-#    agent = Mechanize.new
-#    page = agent.post("https:​/​/​tds.peterpanbus.com/​app/​step1?1-1.IFormSubmitListener-form&agency=3743&country=US",{
-#     'id35_hf_0'=>'',
-#     'trip:ticketTypeField:ticket-type-border:ticket-type-border_body:ticket-type'=>'radio13',
-#     'trip:origin:fieldFrag:field-border:field-border_body:field-container:field'=>'BOSTON, MA',
-#     'trip:destination:fieldFrag:field-border:field-border_body:field-container:field'=>'New York, NY',
-#     'trip:travelDates:dates-border:dates-border_body:departDate:fieldFrag:field-border:field-border_body:field-container:field'=>'2014-10-12',
-#     'trip:passengers:agegroups-border:agegroups-border_body:adults'=>1,
-#     'trip:passengers:agegroups-border:agegroups-border_body:seniors'=>0,
-#     'trip:passengers:agegroups-border:agegroups-border_body:children'=>0,
-#     'submitButton:buttonPanel:buttonStage:button'=>1
-# })
-#  # b = Watir::Browser.new :phantomjs
-  # b.goto url
-  # b.radio(value: 'One').set
-  # b.select_list(name: 'ctl00$MainContent$ddDepartureCity').select_value("Boston, MA")
-  # b.text_field(name:'ctl00$MainContent$sd').set("10/24/2014")
-  # b.radio(value: 'Lowest').set
-  # b.button(name: 'ctl00$MainContent$btGo').click
-  # table = b.table(id: 'ctl00_MainContent_DepartureGrid').text
-  # table.slice!("  Departure Time Total Fare*\n")
-  # details = []
-  # table.split("\n").each do |row|
-  #   dets = row.split(' $')
-  #   details << {
-  #     company: "luckystar",
-
-  #     departure_time: dets[0],
-
-  #     arrival_time: "+4hrs",
-
-  #     price: "$#{dets[1]}"
-
-  #   }
-  # end
-  # return details
-
-#   return page.search('body')
-return "dawgs"
+  form.select_list(name: "trip:origin:fieldFrag:field-border:field-border_body:field-container:field").select("Boston, MA")
+  form.text_field(name: 'trip:destination:fieldFrag:field-border:field-border_body:field-container:field').set('New York, NY')
+  form.text_field(name: 'trip:travelDates:dates-border:dates-border_body:departDate:fieldFrag:field-border:field-border_body:field-container:field').set('2014-10-18')
+  form.button(type: 'submit').click
+  schedule = b.iframe(id: 'frame-one').ul(class: 'schedule-list').when_present.text
+  details = []
+  schedule.split("\nView Schedule Stops\nSelect\n").each do |s|
+    dets = s.split("\n")
+    details << {
+      company: "peterpan",
+      departure_time: dets[0],
+      arrival_time: dets[1],
+      price: dets[3]
+    }
+  end
+  return details
 end
 
 def boltbus
@@ -175,7 +140,7 @@ def boltbus
 
   form.fields_with(name: "ctl00$cphM$forwardRouteUC$lstOrigin$textBox")[0].value = "Boston South Station - Gate 9 NYC-Gate 10 NWK/PHL"
   form.fields_with(name: "ctl00$cphM$forwardRouteUC$lstDestination$textBox")[0].value = "New York  W 33rd St & 11-12th Ave (DC,BAL,BOS,PHL)"
-
+  return 'dog'
   # b = Watir::Browser.new :phantomjs
   # b.goto url
   # b.

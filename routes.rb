@@ -9,7 +9,7 @@ get '/result' do
   @roundtrip = params[:roundtrip]
   @departure_date = params[:depart_date]
   @return_date = params[:return_date]
-  @results = (gotobus + megabus + luckystar).sort_by { |k| k[:price] }
-  @peterpan = boltbus
+  @results = (gotobus + megabus + luckystar + peterpan).sort_by { |k| k[:price] }
+  @boltbus = boltbus
   erb :result
 end

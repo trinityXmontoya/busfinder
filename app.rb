@@ -4,6 +4,7 @@ require 'sinatra_more/markup_plugin'
 require 'open-uri'
 require "nokogiri"
 require "mechanize"
+require "watir-webdriver"
 require './search'
 require './routes'
 also_reload './search'
