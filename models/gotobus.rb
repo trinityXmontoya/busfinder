@@ -12,7 +12,7 @@ class GoToBus
         company: "gotobus",
         departure_time: td[0].content.upcase,
         arrival_time: td[1].content.upcase,
-        price: price == "" ? "Unavailable*" : price
+        price: price == "" ? "Unavailable*" : "#{price}.00"
       }
     end
     return schedule

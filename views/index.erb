@@ -1,18 +1,8 @@
-<div id="search-form">
-  <form action="/result">
-    <select name="origin">
-      <option value="Boston, MA" selected="selected">Boston, MA</option>
-      <option value="New York, NY">New York, NY</option>
-    </select>
-    <select name="destination">
-      <option value="New York, NY" selected="selected">New York, NY</option>
-      <option value="Boston, MA">Boston, MA</option>
-    </select>
-    <input type="date" placeholder="<%= Time.now %>">
-    <button type="submit">Search
-  </form>
+<div id="today" class="col-sm-6">
+  <%= erb :results_table_partial, {locals: {title: "Today, #{Date.today.strftime("%_m/%-d")} Boston->NYC" , results: @today}} %>
 </div>
 
-<div id="today"></div>
-<div id="tomorrow"></div>
-<div id="the-next-day"></div>
+<div id="tomorrow" class="col-sm-6">
+  <%= erb :results_table_partial, {locals: {title: "Tomorrow, #{(Date.today + 1).strftime("%_m/%-d")} Boston->NYC" , results: @tomorrow}} %>
+</div>
+

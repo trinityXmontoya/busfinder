@@ -4,17 +4,55 @@
   <meta charset="UTF-8">
   <title>Bus Finder</title>
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
 </head>
 <body>
-    <div id="logo-wrapper">
-      <div id="logo">
-        <img src="/bus.svg" alt="">
-        <h1>BusFinder</h1>
-        <h4 class="byline">The best prices, fast.</h4>
+  <div id="container" class="container-fluid">
+    <% cache_fragment(:header) do %>
+      <div class="row">
+        <div class="col-lg-12" id="logo-wrapper">
+          <div id="logo">
+            <img src="./images/bus.svg" alt="">
+            <h1>BusFinder</h1>
+            <h4 class="byline">The best prices, fast.</h4>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="search-form" class="col-lg-12">
+          <form action="/result" class="form-inline">
+              <label class="sr-only" for="origin">Origin City</label>
+              <select name="origin" class="form-control">
+                <option value="Boston, MA" selected="selected">Boston, MA</option>
+                <option value="New York, NY">New York, NY</option>
+              </select>
+              <label class="sr-only" for="destination">Destination City</label>
+              <select name="destination" class="form-control">
+                <option value="New York, NY" selected="selected">New York, NY</option>
+                <option value="Boston, MA">Boston, MA</option>
+              </select>
+              <label class="sr-only" for="date">Departure Date</label>
+              <input type="date" name="date" placeholder="<%= Time.now %>" class="form-control">
+            <input type="submit" class="form-control" value="Search">
+          </form>
+        </div>
+      </div>
+    <% end %>
+    <div class="row">
+      <%= yield %>
+    </div>
+    <div class="push"></div>
+  </div>
+  <% cache_fragment(:footer) do %>
+    <div id="footer" class="row">
+      <div class="col-lg-12">
+        Copyright &copy; BusFinder 2014 |
+        Site by <a href="http://www.trinitymontoya.com">Trinity Montoya</a>
       </div>
     </div>
-    <%= yield %>
+  <% end %>
 </body>
 </html>
 

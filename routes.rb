@@ -1,6 +1,14 @@
 get '/' do
-  # @today =
-  # @tomorrow =
+  # @today = today_search
+  # @tomorrow = tmrw_search
+  @today = [{company: "gotobus",
+        departure_time: "9:00PM",
+        arrival_time: "9:00PM",
+        price: "$12.00"}]
+  @tomorrow =[{company: "gotobus",
+        departure_time: "9:00PM",
+        arrival_time: "9:00PM",
+        price: "$12.00"}]
   erb :index
 end
 
@@ -9,10 +17,11 @@ get '/result' do
   @origin = params[:origin]
   @destination = params[:destination]
   @date = params[:date]
-  results = []
-  [GoToBus,Megabus,LuckyStar,PeterPan].each do |bus|
-    results << bus.schedule(@origin,@destination,@date)
-  end
-  @results = results.flatten.sort_by { |k| k[:price] }
-  erb :result
+  @results = general_search(@origin,@destination,@date)
+  erb :result, cache: false
 end
+
+
+# expire index cache each day at 12:01AM
+
+# cache_expire('/')

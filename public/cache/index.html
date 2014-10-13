@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bus Finder</title>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
+</head>
+<body>
+  <div id="container" class="container-fluid">
+    <!-- cache fragment: /header -->
+    <div class="row">
+      <div class="col-lg-12" id="logo-wrapper">
+        <div id="logo">
+          <img src="./images/bus.svg" alt="">
+          <h1>BusFinder</h1>
+          <h4 class="byline">The best prices, fast.</h4>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="search-form" class="col-lg-12">
+        <form action="/result" class="form-inline">
+            <label class="sr-only" for="origin">Origin City</label>
+            <select name="origin" class="form-control">
+              <option value="Boston, MA" selected="selected">Boston, MA</option>
+              <option value="New York, NY">New York, NY</option>
+            </select>
+            <label class="sr-only" for="destination">Destination City</label>
+            <select name="destination" class="form-control">
+              <option value="New York, NY" selected="selected">New York, NY</option>
+              <option value="Boston, MA">Boston, MA</option>
+            </select>
+            <label class="sr-only" for="date">Departure Date</label>
+            <input type="date" name="date" placeholder="2014-10-13 04:14:21 -0400" class="form-control">
+          <input type="submit" class="form-control" value="Search">
+        </form>
+      </div>
+    </div>
+    <!-- /cache fragment: header cached at [ 2014-10-13 04:14:21] -->
+    <div class="row">
+      <div id="today" class="col-sm-6">
+  <h2>Today, 10/13 Boston->NYC </h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <tr>
+        <th>Leaving</th>
+        <th>Arriving</th>
+        <th>Price</th>
+        <th>Site</th>
+      </tr>
+      
+      <tr>
+        <td>9:00PM</td>
+        <td>9:00PM</td>
+        <td>$12.00</td>
+        <td>gotobus</td>
+      </tr>
+      
+    </table>
+  </div>
+</div>
+<div id="tomorrow" class="col-sm-6">
+  <h2>Tomorrow, 10/14 Boston->NYC </h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <tr>
+        <th>Leaving</th>
+        <th>Arriving</th>
+        <th>Price</th>
+        <th>Site</th>
+      </tr>
+      
+      <tr>
+        <td>9:00PM</td>
+        <td>9:00PM</td>
+        <td>$12.00</td>
+        <td>gotobus</td>
+      </tr>
+      
+    </table>
+  </div>
+</div>
+    </div>
+    <div class="push"></div>
+  </div>
+  <!-- cache fragment: /footer -->
+    <div id="footer" class="row">
+      <div class="col-lg-12">
+        Copyright &copy; BusFinder 2014 |
+        Site by <a href="http://www.trinitymontoya.com">Trinity Montoya</a>
+      </div>
+    </div>
+  <!-- /cache fragment: footer cached at [ 2014-10-13 04:58:36] -->
+</body>
+</html>
+</style>
