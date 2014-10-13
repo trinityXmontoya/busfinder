@@ -14,7 +14,7 @@ class LuckyStar
       schedule << {
         company: "<a href=#{BASE}>Lucky Star</a>",
         departure_time: depart,
-        arrival_time: "#{add_4hours_30mins(depart)}*" ,
+        arrival_time: "#{add_4hrs(depart)}*" ,
         price: price == nil ? "Unavailable*" : price
       }
     end
@@ -45,8 +45,8 @@ class LuckyStar
     n_d = "#{d[1]}/#{d[2]}/#{d[0]}"
   end
 
-  def self.add_4hours_30mins(time)
-    (Time.parse(time)+16200).strftime("%I:%M%p")
+  def self.add_4hrs(time)
+    (Time.parse(time)+14400).strftime("%I:%M%p")
   end
 
 end

@@ -3,7 +3,7 @@ def general_search(origin,destination,date)
   [GoToBus,Megabus,LuckyStar,PeterPan].each do |bus|
     results << bus.schedule(origin,destination,date)
   end
-  return results.flatten.sort_by { |k| k[:price] }
+  return results.flatten.sort { |a,b| [a[:price], a[:departure_time]]<=>[b[:price], b[:departure_time]] }
 end
 
 def today_search

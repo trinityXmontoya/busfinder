@@ -1,3 +1,5 @@
 <div id="results" class="col-lg-12">
   <%= erb :results_table_partial, {locals: {title: "#{@origin} to #{@destination} on #{LuckyStar.convert_date(@date)}" , results: @results}} %>
 </div>
+
+<%= erb :notes_partial %>
