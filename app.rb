@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'sinatra/reloader'
 require 'sinatra_more/markup_plugin'
 require 'sinatra/cache'
 require 'open-uri'
