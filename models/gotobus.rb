@@ -1,6 +1,6 @@
 class GoToBus
 
-  BASE = "http://search.gotobus.com/search/bus.do?"
+  BASE = "http://search.gotobus.com/search/bus.do?gid=1094144"
 
   def self.schedule(origin,destination,date)
     schedule = []
