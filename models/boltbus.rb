@@ -3,18 +3,23 @@ class BoltBus
   URL = "https://www.boltbus.com/"
 
   def self.search
-    agent = Mechanize.new
-    page = agent.get(url)
-    form = page.form
-    form.field_with(name: 'ctl00$cphM$forwardRouteUC$lstRegion$textBox').value="Northeast"
-    form.field_with(name: 'ctl00$cphM$forwardRouteUC$lstOrigin$textBox').value="Boston South Station - Gate 9 NYC-Gate 10 NWK/PHL"
-    form.field_with(name: 'ctl00$cphM$forwardRouteUC$lstDestination$textBox').value="New York  W 33rd St & 11-12th Ave (DC,BAL,BOS,PHL)"
-    form.field_with(name: 'ctl00$cphM$forwardRouteUC$txtDepartureDate').value="10/16/2014"
-    form.add_field!('__EVENTTARGET','ctl00$cphM$forwardRouteUC$CalendarChanger')
-    form.add_field!('__EVENTARGUMENT','')
-    # page = form.submit
-    sleep(2)
-    return page.search('body')
+    begin
+      agent = Mechanize.new
+      page = agent.get(url)
+      form = page.form
+      form.field_with(name: 'ctl00$cphM$forwardRouteUC$lstRegion$textBox').value="Northeast"
+      form.field_with(name: 'ctl00$cphM$forwardRouteUC$lstOrigin$textBox').value="Boston South Station - Gate 9 NYC-Gate 10 NWK/PHL"
+      form.field_with(name: 'ctl00$cphM$forwardRouteUC$lstDestination$textBox').value="New York  W 33rd St & 11-12th Ave (DC,BAL,BOS,PHL)"
+      form.field_with(name: 'ctl00$cphM$forwardRouteUC$txtDepartureDate').value="10/16/2014"
+      form.add_field!('__EVENTTARGET','ctl00$cphM$forwardRouteUC$CalendarChanger')
+      form.add_field!('__EVENTARGUMENT','')
+      # page = form.submit
+      sleep(2)
+      return page.search('body')
+    rescue
+
+      return {error: "server"}
+    end
 
     # b = Watir::Browser.new :phantomjs
     # b.goto url

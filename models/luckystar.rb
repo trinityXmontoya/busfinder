@@ -4,21 +4,29 @@ class LuckyStar
   CODES = { "New York, NY" => 1, "Boston, MA" => 2 }
 
   def self.schedule(origin,destination,date)
-    schedule = []
-    details = search(origin,destination,date)
-    # remove the first tr as it is just the table header "Departure Time| Total | Fare"
-    details.shift
-    details.each do |d|
-      depart = d.text.scan(/\d{1,2}:\d{2} \w{2}/).first
-      price = d.text.scan(/\$\d{2}.\d{2}/).first
-      schedule << {
-        company: "<a href=#{BASE}>Lucky Star</a>",
-        departure_time: depart,
-        arrival_time: "#{add_4hrs(depart)}*" ,
-        price: price == nil ? "Unavailable*" : price
-      }
+    begin
+      schedule = []
+      details = search(origin,destination,date)
+      # remove the first tr as it is just the table header "Departure Time| Total | Fare"
+      details.shift
+      details.each do |d|
+        depart = d.text.scan(/\d{1,2}:\d{2} \w{2}/).first
+        price = d.text.scan(/\$\d{2}.\d{2}/).first
+        schedule << {
+          company: "<a href=#{BASE}>Lucky Star</a>",
+          departure_time: depart,
+          arrival_time: "#{add_4hrs(depart)}*" ,
+          price: price == nil ? "Unavailable*" : price
+        }
+      end
+      if schedule == []
+        return {error: "No results"}
+      else
+        return schedule
+      end
+    rescue
+      return {error: "server"}
     end
-    return schedule
   end
 
   def self.search(origin,destination,date)
