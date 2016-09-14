@@ -8,12 +8,12 @@ class GoToBus
       url = query(origin,destination,date)
       details = search(url)
       details.each do |d|
-        td = d.css("tr .n_b_s_se")
-        price = td[5].content.strip()
+        td = d.css("td")
+        price = td[7].text.strip.gsub("$","")
         schedule << {
-          company: "<a href=#{url}>GoToBus</a>",
-          departure_time: td[0].content.upcase,
-          arrival_time: td[1].content.upcase,
+          company: "<a href=#{url}>#{td[3].text.strip}</a>",
+          departure_time: td[0].text.upcase,
+          arrival_time: td[2].text.upcase,
           price: price == "" ? "Unavailable*" : "#{price}.00"
         }
       end
@@ -35,7 +35,7 @@ class GoToBus
 
 
   def self.search(url)
-    return Nokogiri::HTML(open(url)).css("#listarea .b_s_result table")
+    return Nokogiri::HTML(open(url)).css("#listarea tbody tr.hidden-xs")
   end
 
 end

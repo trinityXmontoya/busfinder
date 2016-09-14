@@ -5,12 +5,14 @@ require 'open-uri'
 require "nokogiri"
 require "mechanize"
 require "watir-webdriver"
+require "sinatra/reloader" if development?
+require "pry"
 Dir["./models/*.rb"].each {|file| require file }
 
 set :root, File.dirname(__FILE__)
-set :cache_enabled, true
+set :cache_enabled, false
 set :cache_output_dir, Proc.new { File.join(root, 'public', 'cache') }
-set :cache_environment, :development
+set :cache_environment, :production
 set :cache_fragments_output_dir, Proc.new { File.join(root, 'public', 'cache') }
 
 require './routes'

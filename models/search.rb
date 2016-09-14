@@ -1,4 +1,5 @@
 def general_search(origin,destination,date)
+  puts "performing a general search"
   results = []
   [GoToBus,Megabus,LuckyStar,PeterPan].each do |bus|
     res = bus.schedule(origin,destination,date)
@@ -16,5 +17,3 @@ end
 def tmrw_search
   general_search("Boston, MA","New York, NY",(Date.today + 1).to_s)
 end
-
-
