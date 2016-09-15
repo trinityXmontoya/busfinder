@@ -1,7 +1,6 @@
 def general_search(origin,destination,date)
-  puts "performing a general search"
   results = []
-  [GoToBus, Megabus, PeterPan].each do |bus|
+  [GoToBus, LuckyStar, Megabus, PeterPan].each do |bus|
     res = bus.schedule(origin,destination,date)
     unless res.class == Hash
       results << res
@@ -11,9 +10,9 @@ def general_search(origin,destination,date)
 end
 
 def today_search
-  general_search("Boston, MA","New York, NY",Date.today.to_s)
+  general_search("Boston, MA","New York, NY",Date.today)
 end
 
 def tmrw_search
-  general_search("Boston, MA","New York, NY",(Date.today + 1).to_s)
+  general_search("Boston, MA","New York, NY",(Date.today + 1))
 end

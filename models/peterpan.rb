@@ -27,11 +27,10 @@ class PeterPan
   end
 
   def remove_zero_padding(time)
-    Time.parse(time).text).strftime("%l:%m%p").strip
+    Time.parse(time).strftime("%l:%m%p").strip
   end
 
   def self.search(origin,destination,date)
-    date = Date.parse(date)
     opts = {
     "ada"=> "false",
     "adults"=> "1",

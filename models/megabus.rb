@@ -37,18 +37,14 @@ class Megabus
   end
 
   def self.query(origin,destination,date)
-    BASE + "&originCode=#{CODES[origin]}&destinationCode=#{CODES[destination]}&outboundDepartureDate=#{convert_date(date)}"
+    formatted_date = date.strftime("%m-%d-%Y")
+    BASE + "&originCode=#{CODES[origin]}\
+            &destinationCode=#{CODES[destination]}\
+            &outboundDepartureDate=#{formatted_date}"
   end
 
   def self.search(url)
     return Nokogiri::HTML(open(url)).css(".journey")
   end
 
-  def self.convert_date(date)
-    d = date.split('-')
-    n_d = "#{d[1]}-#{d[2]}-#{d[0]}"
-  end
-
-
 end
-
