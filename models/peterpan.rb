@@ -12,17 +12,22 @@ class PeterPan
       details.each do |d|
         schedule << {
           company: "<a href=#{BASE}>Peter Pan</a>",
-          departure_time: d.css(".departInfo .time").text,
-          arrival_time: d.css(".arrivalInfo .time").text,
-          price: d.css(".scheduleFare .primaryText:not(.cityName)").text
+          departure_time: remove_zero_padding(d.css(".departInfo .time").text),
+          arrival_time: remove_zero_padding(d.css(".arrivalInfo .time").text),
+          price: "#{d.css(".scheduleFare .primaryText:not(.cityName)").text}.00"
         }
       end
+
       if schedule == []
         return {error: "No results"}
       else
         return schedule
       end
     end
+  end
+
+  def remove_zero_padding(time)
+    Time.parse(time).text).strftime("%l:%m%p").strip
   end
 
   def self.search(origin,destination,date)
