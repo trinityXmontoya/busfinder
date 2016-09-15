@@ -13,3 +13,5 @@ Note: I made this before [Wanderu](https://www.wanderu.com/en/) was popular. The
 ### Sources
 * [GoToBus](gotobus.com)
 * [Megabus](megabus.com)
+* [PeterPan](https://peterpanbus.com)
+* [LuckyStar](http://www.luckystarbus.com/)

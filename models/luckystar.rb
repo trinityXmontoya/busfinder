@@ -13,7 +13,7 @@ class LuckyStar
         depart = td[0].text
         price = td[1].text
         schedule << {
-          company: "<a href=#{BASE}>Lucky Star</a>",
+          company: "<a href='http://www.luckystarbus.com/Purchase.aspx'>Lucky Star</a>",
           departure_time: depart,
           arrival_time: "#{add_4hrs(depart)}*" ,
           price: price == nil ? "Unavailable*" : price

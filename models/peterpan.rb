@@ -11,7 +11,7 @@ class PeterPan
     else
       details.each do |d|
         schedule << {
-          company: "<a href=#{BASE}>Peter Pan</a>",
+          company: "<a href='https://peterpanbus.com/tickets/'>Peter Pan</a>",
           departure_time: remove_zero_padding(d.css(".departInfo .time").text),
           arrival_time: remove_zero_padding(d.css(".arrivalInfo .time").text),
           price: "#{d.css(".scheduleFare .primaryText:not(.cityName)").text}.00"
