@@ -1,6 +1,7 @@
 class PeterPan
 
-  BASE = "https://tds.peterpanbus.com"
+  BASE = "https://webstore.tdstickets.com/service/step1Submit/3743?s=f9f3476d-7bc5-4a19-9e65-fd75cade13b4"
+  CODES = { "New York, NY" => "151239", "Boston, MA" => "040030" }
 
   def self.schedule(origin,destination,date)
     schedule = []
@@ -8,13 +9,12 @@ class PeterPan
     if details.class == Hash
       return details
     else
-      details.split("\nView Schedule Stops\nSelect\n").each do |d|
-        dets = d.split("\n")
+      details.each do |d|
         schedule << {
-          company: "<a href=#{BASE}>Peterpan</a>",
-          departure_time: dets[0],
-          arrival_time: dets[1],
-          price: dets[3]
+          company: "<a href=#{BASE}>Peter Pan</a>",
+          departure_time: d.css(".departInfo .time").text,
+          arrival_time: d.css(".arrivalInfo .time").text,
+          price: d.css(".scheduleFare .primaryText:not(.cityName)").text
         }
       end
       if schedule == []
@@ -26,23 +26,36 @@ class PeterPan
   end
 
   def self.search(origin,destination,date)
+    date = Date.parse(date)
+    opts = {
+    "ada"=> "false",
+    "adults"=> "1",
+    "adultsHandicap"=> "0",
+    "child2"=> "0",
+    "child5"=> "0",
+    "childrenHandicap"=> "0",
+    "departDate"=> date.strftime("%m%d"),
+    "departDateUnformatted"=> date.strftime("%m/%d/%Y"),
+    "destination"=> CODES[destination],
+    "destinationName"=> destination,
+    "isStudent"=> "false",
+    "origin"=> CODES[origin],
+    "originName"=> origin,
+    "seniors"=> "0",
+    "seniorsHandicap"=> "0",
+    "students"=> "0",
+    "totalPassengers"=> "1",
+    "tripType"=> "One Way",
+    "webDiscount"=> "true"
+    }
+
     begin
-      b = Watir::Browser.new :phantomjs, :args => ['--ssl-protocol=tlsv1']
-      b.goto(BASE)
-      form = b.iframe(id: 'frame-one')
-      form.radio(value: "radio11").set
-      form.select_list(name: "trip:origin:fieldFrag:field-border:field-border_body:field-container:field:field")
-          .select("#{origin}")
-      form.select_list(name: "trip:destination:fieldFrag:field-border:field-border_body:field-container:field:field")
-          .select("#{destination}")
-      form.text_field(name: 'trip:travelDates:dates-border:dates-border_body:departDate:fieldFrag:field-border:field-border_body:field-container:field:field')
-          .set("#{date}")
-      form.button(type: 'submit').click
-      if b.text.include? "There are no schedule available for this route on this carrier."
-        return {error: "No results for Peter Pan at this time"}
-      else
-        return b.iframe(id: 'frame-one').ul(class: 'schedule-list').when_present.text
-      end
+      clnt = HTTPClient.new
+      res1 = clnt.post(BASE, opts, follow_redirect: true)
+      redirect_url = JSON.parse(res1.body)["redirect"]
+      res2 = clnt.get(redirect_url, follow_redirect: true)
+      doc = Nokogiri::HTML(res2.body)
+      return doc.css(".schedules div.schedule:not(.soldOut)")
     rescue
       return {error: "server"}
     end

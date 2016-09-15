@@ -49,7 +49,8 @@ class LuckyStar
             "ctl00$MainContent$sd" => "#{convert_date(date)}"}
 
     clnt = HTTPClient.new
-    res = clnt.post(BASE, opts, follow_redirect: true)
+    redirect_url = clnt.post(BASE, opts, follow_redirect: true)
+
     doc = Nokogiri::HTML(res.body)
     return doc.css("table#MainContent_DepartureGrid tr")
   end
