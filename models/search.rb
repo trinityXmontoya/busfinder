@@ -1,7 +1,7 @@
 def general_search(origin,destination,date)
   puts "performing a general search"
   results = []
-  [GoToBus,Megabus,LuckyStar,PeterPan].each do |bus|
+  [LuckyStar].each do |bus|
     res = bus.schedule(origin,destination,date)
     unless res.class == Hash
       results << res

@@ -9,7 +9,7 @@ class GoToBus
       details = search(url)
       details.each do |d|
         td = d.css("td")
-        price = td[7].text.strip.gsub("$","")
+        price = td[7].text.strip
         schedule << {
           company: "<a href=#{url}>#{td[3].text.strip}</a>",
           departure_time: td[0].text.upcase,

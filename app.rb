@@ -7,6 +7,7 @@ require "mechanize"
 require "watir-webdriver"
 require "sinatra/reloader" if development?
 require "pry"
+require "httpclient"
 Dir["./models/*.rb"].each {|file| require file }
 
 set :root, File.dirname(__FILE__)

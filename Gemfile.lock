@@ -24,6 +24,7 @@ GEM
     ffi (1.9.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httpclient (2.8.2.4)
     i18n (0.6.11)
     json (1.8.1)
     mechanize (2.7.3)
@@ -106,6 +107,7 @@ PLATFORMS
 
 DEPENDENCIES
   eventmachine!
+  httpclient
   mechanize
   newrelic_rpm
   nokogiri
