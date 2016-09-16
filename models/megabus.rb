@@ -7,7 +7,7 @@ class Megabus
   def self.schedule(origin,destination,date)
     begin
       schedule = []
-      url = query(origin,destination,date)
+      url = build_query(origin,destination,date)
       details = search(url)
       details.each do |d|
         schedule << {
@@ -36,7 +36,7 @@ class Megabus
     end
   end
 
-  def self.query(origin,destination,date)
+  def self.build_query(origin,destination,date)
     formatted_date = date.strftime("%m-%d-%Y")
     BASE + "&originCode=#{CODES[origin]}"\
            "&destinationCode=#{CODES[destination]}"\

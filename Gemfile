@@ -1,8 +1,6 @@
 # Gemfile
 source 'https://rubygems.org'
-ruby "2.1.0"
-
-gem 'eventmachine', :git => 'git://github.com/eventmachine/eventmachine.git', :branch => 'master'
+ruby "2.3.1"
 
 gem "sinatra"
 gem "sinatra-contrib"
@@ -11,5 +9,5 @@ gem "sinatra-cache"
 gem "watir-webdriver"
 gem "thin"
 gem "newrelic_rpm"
-gem "pry"
 gem "httpclient"
+gem "nokogiri"

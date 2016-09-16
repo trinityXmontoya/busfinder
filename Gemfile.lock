@@ -1,71 +1,42 @@
-GIT
-  remote: git://github.com/eventmachine/eventmachine.git
-  revision: debad3c6a3d623ae2fe5e2495ce6a5e18e6ba1e8
-  branch: master
-  specs:
-    eventmachine (1.2.0.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (4.1.6)
-      i18n (~> 0.6, >= 0.6.9)
-      json (~> 1.7, >= 1.7.7)
+    activesupport (5.0.0.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
       minitest (~> 5.1)
-      thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     backports (3.6.8)
-    childprocess (0.5.5)
+    childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
-    coderay (1.1.0)
-    daemons (1.1.9)
-    domain_name (0.5.21)
-      unf (>= 0.0.5, < 1.0.0)
-    ffi (1.9.3)
-    http-cookie (1.0.2)
-      domain_name (~> 0.5)
+    concurrent-ruby (1.0.2)
+    daemons (1.2.4)
+    eventmachine (1.2.0.1)
+    ffi (1.9.14)
     httpclient (2.8.2.4)
-    i18n (0.6.11)
-    json (1.8.1)
-    mechanize (2.7.3)
-      domain_name (~> 0.5, >= 0.5.1)
-      http-cookie (~> 1.0)
-      mime-types (~> 2.0)
-      net-http-digest_auth (~> 1.1, >= 1.1.1)
-      net-http-persistent (~> 2.5, >= 2.5.2)
-      nokogiri (~> 1.4)
-      ntlm-http (~> 0.1, >= 0.1.1)
-      webrobots (>= 0.0.9, < 0.2)
-    method_source (0.8.2)
-    mime-types (2.4.1)
-    mini_portile (0.6.0)
-    minitest (5.4.2)
-    multi_json (1.10.1)
-    net-http-digest_auth (1.4)
-    net-http-persistent (2.9.4)
-    newrelic_rpm (3.9.0.229)
-    nokogiri (1.6.3.1)
-      mini_portile (= 0.6.0)
-    ntlm-http (0.1.1)
-    pry (0.10.1)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
-    rack (1.5.2)
+    i18n (0.7.0)
+    mini_portile2 (2.1.0)
+    minitest (5.9.0)
+    multi_json (1.12.1)
+    newrelic_rpm (3.16.2.321)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
+    pkg-config (1.1.7)
+    rack (1.6.4)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rubyzip (1.1.6)
-    selenium-webdriver (2.43.0)
+    rubyzip (1.2.0)
+    selenium-webdriver (2.53.4)
       childprocess (~> 0.5)
-      multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    sinatra (1.4.5)
-      rack (~> 1.4)
+    sinatra (1.4.7)
+      rack (~> 1.5)
       rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
+      tilt (>= 1.3, < 3)
     sinatra-cache (0.3.7)
       sinatra (>= 1.1.0)
       sinatra-outputbuffer (>= 0.1.0)
@@ -84,34 +55,26 @@ GEM
       sinatra (>= 0.9.2)
       thor (>= 0.11.8)
       tilt (>= 0.2)
-    slop (3.6.0)
-    thin (1.6.3)
+    thin (1.7.0)
       daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0)
-      rack (~> 1.0)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (>= 1, < 3)
     thor (0.19.1)
-    thread_safe (0.3.4)
-    tilt (1.4.1)
+    thread_safe (0.3.5)
+    tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.6)
-    watir-webdriver (0.6.11)
-      selenium-webdriver (>= 2.18.0)
-    webrobots (0.1.1)
-    websocket (1.2.1)
+    watir-webdriver (0.9.3)
+      selenium-webdriver (>= 2.46.2)
+    websocket (1.2.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  eventmachine!
   httpclient
-  mechanize
   newrelic_rpm
   nokogiri
-  pry
   sinatra
   sinatra-cache
   sinatra-contrib
@@ -119,5 +82,8 @@ DEPENDENCIES
   thin
   watir-webdriver
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.10.3
+   1.12.5
