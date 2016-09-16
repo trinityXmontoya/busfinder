@@ -38,9 +38,9 @@ class Megabus
 
   def self.query(origin,destination,date)
     formatted_date = date.strftime("%m-%d-%Y")
-    BASE + "&originCode=#{CODES[origin]}\
-            &destinationCode=#{CODES[destination]}\
-            &outboundDepartureDate=#{formatted_date}"
+    BASE + "&originCode=#{CODES[origin]}"\
+           "&destinationCode=#{CODES[destination]}"\
+           "&outboundDepartureDate=#{formatted_date}"
   end
 
   def self.search(url)

@@ -26,7 +26,7 @@ class PeterPan
     end
   end
 
-  def remove_zero_padding(time)
+  def self.remove_zero_padding(time)
     Time.parse(time).strftime("%l:%m%p").strip
   end
 

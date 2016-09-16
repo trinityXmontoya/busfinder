@@ -6,9 +6,8 @@ class LuckyStar
     begin
       schedule = []
       details = search(origin,destination,date)
-      # remove first tds as they are filler
-      details.shift(2)
-      details.each do |d|
+      # remove first trs + last
+      details[2...-1].each do |d|
         td = d.css("td")
         depart = td[0].text
         price = td[1].text
@@ -19,7 +18,6 @@ class LuckyStar
           price: price == nil ? "Unavailable*" : price
         }
       end
-      puts "imthesched",schedule
       if schedule == []
         return {error: "No results"}
       else
