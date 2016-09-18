@@ -9,12 +9,14 @@ GEM
     backports (3.6.8)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    coderay (1.1.1)
     concurrent-ruby (1.0.2)
     daemons (1.2.4)
     eventmachine (1.2.0.1)
     ffi (1.9.14)
     httpclient (2.8.2.4)
     i18n (0.7.0)
+    method_source (0.8.2)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -23,6 +25,10 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     pkg-config (1.1.7)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -55,6 +61,7 @@ GEM
       sinatra (>= 0.9.2)
       thor (>= 0.11.8)
       tilt (>= 0.2)
+    slop (3.6.0)
     thin (1.7.0)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -75,6 +82,7 @@ DEPENDENCIES
   httpclient
   newrelic_rpm
   nokogiri
+  pry
   sinatra
   sinatra-cache
   sinatra-contrib
