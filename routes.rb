@@ -1,19 +1,10 @@
 get '/' do
+  cache_control :public, :max_age => 43200
   @today = today_search
   @tomorrow = tmrw_search
-  # @today = [{company: "gotobus",
-  #       departure_time: "9:00PM",
-  #       arrival_time: "9:00PM",
-  #       price: "$12.00"}]
-  # @tomorrow =[{company: "gotobus",
-  #       departure_time: "9:00PM",
-  #       arrival_time: "9:00PM",
-  #       price: "$12.00"}]
-  erb :index
 end
 
 get '/result' do
-  puts params
   @origin = params[:origin]
   @destination = params[:destination]
   @date = params[:date]
@@ -22,9 +13,5 @@ get '/result' do
 end
 
 get '/about' do
-  erb :about, cache: false
+  erb :about
 end
-
-# expire index cache each day at 12:01AM
-
-# cache_expire('/')

@@ -1,24 +1,24 @@
-<h2 style="text-align:center"><%= title %> </h2>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <tr>
-        <th>Leaving</th>
-        <th>Arriving</th>
-        <th>Price</th>
-        <th>Site</th>
-      </tr>
-      <% results.each do |x| %>
-      <tr>
-        <td><%= x[:departure_time] %></td>
-        <td><%= x[:arrival_time] %></td>
-        <% price = x[:price] %>
-        <% if price < "$20" %>
-          <td class="budget"><%= price %></td>
-        <% else %>
-          <td><%= price %></td>
-        <% end %>
-        <td><%= x[:company] %></td>
-      </tr>
+<h2 style="text-align:center"><%= title %></h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>Leaving</th>
+      <th>Arriving</th>
+      <th>Price</th>
+      <th>Site</th>
+    </tr>
+    <% results.each do |x| %>
+    <tr>
+      <td><%= x[:departure_time] %></td>
+      <td><%= x[:arrival_time] %></td>
+      <% price = x[:price] %>
+      <% if price < "$20" %>
+        <td class="budget"><%= price %></td>
+      <% else %>
+        <td><%= price %></td>
       <% end %>
-    </table>
-  </div>
+      <td><%= x[:company] %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
